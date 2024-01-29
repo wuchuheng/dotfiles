@@ -2,8 +2,8 @@
 
 TRUE=0
 FALSE=1
-dotfiles_repo="https://github.com/zpm-shell/zpm-dotfiles-template.git"
-dotfiles_dir="${HOME}/.zpm-dotfiles"
+dotfiles_repo="https://github.com/wuchuheng/dotfiles.git"
+dotfiles_dir="${HOME}/.dotfiles"
 ZPM_INSTALL_URL="https://raw.githubusercontent.com/zpm-shell/zpm/0.1.0/install.sh"
 
 ##
