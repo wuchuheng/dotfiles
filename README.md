@@ -1,5 +1,11 @@
 # Dotfiles
 
+<p align="center">
+    <a herf='https://github.com/wuchuheng/dotfiles/actions/workflows/test.yaml' alg='Test Dotfiles'>
+        <img src='https://github.com/wuchuheng/dotfiles/actions/workflows/test.yaml/badge.svg?branch=master' />
+    </a>
+</p>
+
 Welcome to my personal dotfiles repository for Zsh, managed with the Zsh Plugin Manager (ZPM). This setup is designed to streamline my shell environment with custom configurations, functions, and themes for Zsh.
 
 ## Prerequisites
