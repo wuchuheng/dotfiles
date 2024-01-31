@@ -8,7 +8,7 @@
 # - show the changes
 # - add the prompt for the AI gdp to use the standard git commit message to generate the standar commit message
 # - copy the changes to the clipboard
-function gdsc_gdp_workflow() {
+function git_gdp_workflow() {
     local diff=$( git add -A && git diff --staged )
     # | pbcopy
     local content=$( cat  <<EOF
