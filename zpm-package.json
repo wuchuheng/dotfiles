@@ -20,7 +20,6 @@
       "subPlugin": {
         "path": "plugins",
         "name": [
-          "git",
           "z"
         ]
       }
