@@ -49,6 +49,10 @@ jobs:
         run: |
           docker exec ${CONTAINER_NAME} zsh -c "
               source ~/.zshrc
+              if [[ $? -ne 0 ]]; then
+                echo 'source ~/.zshrc failed'
+                exit 1
+              fi
               cat ~/.zshrc
               zpm -v
           "
