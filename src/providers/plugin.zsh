@@ -43,7 +43,6 @@ function load() {
         # if the plugin is a object, and then load the plugin from the object config like:
         # {
         #   "name": "github.com/ohmyzsh/ohmyzsh", # <-- the plugin name was required.
-        #   "config": "./src/config/oh-my-zsh.zsh" # <-- the config path was optional. if the config was set, then load the config file.
         #   "entry": "oh-my-zsh.sh", # <-- the entry was optional. if the entry was not set, then the entry will be set to ohmyzsh.plugin.zsh
         #   "subPlugin": { # <-- the subPlugin was optional.
         #     "path": "plugins", # <-- the path was optional. if the path was not set, then the default value was ''
@@ -125,25 +124,10 @@ function load() {
                 done
             fi
         fi
-        local configFile=''
-        # 5 check the config was set or not.
-        local hasConfig=$( $jq -q config -j "${plugin}" -t has )
-        if [[ ${hasConfig} == 'true' ]]; then
-            configFile=$( $jq -q config -j "${plugin}" -t get )
-            configFile=${G_DOTFILES_ROOT}/${configFile}
-            if [[ ! -f ${configFile} ]]; then
-                local errorMsg="the config file ${configFile} was not found for the plugin ${pluginName} in the config ${plugin}."
-                throw --error-message "${errorMsg}" --exit-code 1
-            fi
-            configFile=${configFile:A}
-        fi
-        
-        # 6　load the plugin
-        # 6.1 load the plugin config
-        [[ -f ${configFile} ]] && source ${configFile}
-        # 6.2 load the plugin
+        # 5　load the plugin
+        # 5.1 load the plugin
         source ${entry}
-        # 6.3 load the subPlugin
+        # 5.2 load the subPlugin
         for subPluginFile in ${subPluginFiles[@]}; do
             source ${subPluginFile}
         done

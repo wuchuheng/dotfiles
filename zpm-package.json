@@ -7,8 +7,7 @@
     "test": "zpm test"
   },
   "theme": {
-    "repository": "github.com/romkatv/powerlevel10k",
-    "conf": "./src/config/theme.zsh"
+    "repository": "github.com/romkatv/powerlevel10k"
   },
   "packageType": "dotfiles",
   "keywords": [],
@@ -17,7 +16,6 @@
   "plugins": [
     {
       "name": "github.com/ohmyzsh/ohmyzsh",
-      "config": "./src/config/oh-my-zsh.zsh",
       "entry": "oh-my-zsh.sh",
       "subPlugin": {
         "path": "plugins",
