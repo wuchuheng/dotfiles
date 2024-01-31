@@ -4,7 +4,7 @@ import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
 
 function load() {
     local plugin=''
-    local savedPluginPath="${G_DOTFILES_ROOT}/src/custom/plugins"
+    local savedPluginPath="${G_DOTFILES_ROOT}/src/plugins"
     if [[ -n "$(ls -A ${savedPluginPath})" ]]; then
         for plugin in ${savedPluginPath}/*; do
             local name=${plugin:t}
