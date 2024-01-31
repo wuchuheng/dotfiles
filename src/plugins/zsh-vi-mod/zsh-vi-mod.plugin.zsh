@@ -1,8 +1,14 @@
 #!/usr/bin/env zsh
 
-bindkey -v
 export KEYTIMEOUT=1
-bindkey -v '^E' forward-word
+# Bind Ctrl+e to the end-of-line widget
+bindkey -v '^E' end-of-line
+# Bind Ctrl+w to forward one word.
+bindkey -v '^W' forward-word
+# Bind Ctrl+p to the up-line-or-history widget
+bindkey -v '^P' up-line-or-history
+# Bind Ctrl+n to the down-line-or-history widget
+bindkey -v '^N' down-line-or-history
 
 cursor_mode() {
     # See https://ttssh2.osdn.jp/manual/4/en/usage/tips/vim.html for cursor shapes
