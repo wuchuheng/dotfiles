@@ -9,6 +9,10 @@ bindkey -v '^W' forward-word
 bindkey -v '^P' up-line-or-history
 # Bind Ctrl+n to the down-line-or-history widget
 bindkey -v '^N' down-line-or-history
+# increase then number under the cursor in normal mode.
+autoload -Uz incarg
+zle -N incarg
+bindkey -M vicmd '^a' incarg
 
 cursor_mode() {
     # See https://ttssh2.osdn.jp/manual/4/en/usage/tips/vim.html for cursor shapes

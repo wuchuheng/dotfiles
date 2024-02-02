@@ -2,6 +2,9 @@
 #@Author: wuchuheng<root@wuchuheng.com>
 #@Date: 2024-02-01 01:25
 
+import ./actions/activate-chrome.action.zsh --as activate_chrome_action
+import ./actions/switch-chrome-tab1.action.zsh --as switch_chrome_tab1_action
+
 # @Description: This workflow is used to generate the standard git commit message by using the AI gdp.
 # This is a workflow to do the flowing steps:
 # - add all the changes to the stage
@@ -24,5 +27,6 @@ and try to add a option that can be used to add the scope of the changes,like:
 EOF
 )
    print $content | pbcopy 
-
+   call activate_chrome_action.activate_chrome_action
+   call switch_chrome_tab1_action.switch_chrome_tab1_action
 }
