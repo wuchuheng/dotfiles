@@ -13,6 +13,8 @@ bindkey -v '^N' down-line-or-history
 autoload -Uz incarg
 zle -N incarg
 bindkey -M vicmd '^a' incarg
+# remove the word backword in insert mode by Ctrl+w.
+bindkey -v '^W' backward-kill-word
 
 cursor_mode() {
     # See https://ttssh2.osdn.jp/manual/4/en/usage/tips/vim.html for cursor shapes
