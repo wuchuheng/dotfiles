@@ -142,7 +142,7 @@ add_zshrc
 if [ -f ~/.zshenv ]; then
     backupDir="${dotfiles_dir}/src/cache/backup"
     [ ! -d "${backupDir}" ] && mkdir -p "${backupDir}"
-    mv ${backupDir}/.zshenv
+    mv ~/.zshenv ${backupDir}/.zshenv 
 fi
 ## 2. link the ~/.dotfiles/src/.zshenv to ~/.zshenv
 ln -s ${dotfiles_dir}/src/.zshenv ~/.zshenv
