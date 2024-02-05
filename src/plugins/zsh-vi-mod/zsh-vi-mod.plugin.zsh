@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 export KEYTIMEOUT=1
+bindkey -v
 # Bind Ctrl+e to the end-of-line widget
 bindkey -v '^E' end-of-line
 # Bind Ctrl+w to forward one word.
