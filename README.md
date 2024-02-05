@@ -28,6 +28,11 @@ curl -fsSL https://raw.githubusercontent.com/wuchuheng/dotfiles/master/install.s
  - add the prompt for the AI gdp to use the standard git commit message to generate the standar commit message
  - copy the changes to the clipboard
 
+## aliases
+
+### 1. fonts
+[NerdFont Regular](src/assets/fonts/0xProto/)
+
 ## Contributing
 
 Feel free to fork this repository and customize your own Zsh environment. If you have suggestions or improvements, pull requests are welcome.
