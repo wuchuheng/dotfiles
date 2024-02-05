@@ -137,5 +137,15 @@ add_zshrc
 
 [ -f install.sh ] && rm -f install.sh
 
+# link the ~/.dotfiles/src/.zshenv to ~/.zshenv
+## 1. remove the ~/.zshenv to ~/.dotfiles/src/cache/backup/.zshenv if it exists
+if [ -f ~/.zshenv ]; then
+    backupDir="${dotfiles_dir}/src/cache/backup"
+    [ ! -d "${backupDir}" ] && mkdir -p "${backupDir}"
+    mv ${backupDir}/.zshenv
+fi
+## 2. link the ~/.dotfiles/src/.zshenv to ~/.zshenv
+ln -s ${dotfiles_dir}/src/.zshenv ~/.zshenv
+
 # install zpm dotfiles successfully, please restart your terminal.
 printf "\e[32;1mSUCCESS\e[0m%s\n" " zpm dotfiles installed successfully, please restart your terminal."
