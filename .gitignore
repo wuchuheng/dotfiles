@@ -1,3 +1,4 @@
 src/tmp/
 dotfiles.zsh
 src/cache/
+src/XDG_CONFIG_HOME/crossnote/
