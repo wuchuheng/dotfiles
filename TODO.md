@@ -4,8 +4,6 @@ This document outlines planned features, known bugs, and tasks to be completed f
 
 ## Features
 
-- [ ] **Tmux**
-  - Implement the status bar to hide when hitting `Ctrl + b + m`
 
 ## Bugs
 
@@ -20,4 +18,5 @@ This document outlines planned features, known bugs, and tasks to be completed f
 
 ## Completed
 
-- [x] Initial deployment to staging environment
+- [x] **Tmux: toggle the statue bar visable in tmux**
+  - Implement the status bar to hide when hitting `Ctrl + b + b`
