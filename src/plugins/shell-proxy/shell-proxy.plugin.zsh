@@ -4,7 +4,7 @@ import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
 
 function proxy.set() {
     eval "${SHELL_PROXY_CMD}"
-    call log.info "Set the proxy in the shell."
+    call log.info "Set the proxy in the shell." --no-path
 }
 
 function proxy() {
@@ -24,7 +24,7 @@ function proxy.unset() {
     git config --global --unset http.proxy
     git config --global --unset https.proxy
     # Unset the proxy in the shell.
-    call log.info "Unset the proxy in the shell." --no-path
+    call log.success "Unset the proxy in the shell."
 }
 
 if [[ ${SHELL_PROXY_ENABLED} == ${TRUE}  ]]; then
