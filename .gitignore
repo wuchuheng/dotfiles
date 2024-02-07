@@ -3,3 +3,4 @@ dotfiles.zsh
 src/cache/
 !src/XDG_CONFIG_HOME/tmux
 src/XDG_CONFIG_HOME/
+letsencrypt/

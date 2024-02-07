@@ -10,7 +10,10 @@
 # Create a new certificate by DNS.
 ##
 function certificate.create_by_dns() {
-    local certificateDir="/etc/letsencrypt"
+    local certificateDir="$(pwd)/letsencrypt"
+    if [[ ! -d $certificateDir ]]; then
+        mkdir -p $certificateDir
+    fi
     sudo docker run -it --rm --name certbot \
         -v "${certificateDir}:/etc/letsencrypt" \
         -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
