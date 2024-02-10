@@ -24,7 +24,3 @@ local title="Command Line Notification"
 
 # Display the notification on the desktop.
 osascript -e "display notification \"${messageInput}\" with title \"${title}\" subtitle \"${cmd}\" sound name \"Submarine\""
-
-
-
-
