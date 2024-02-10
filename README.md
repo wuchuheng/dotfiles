@@ -28,7 +28,11 @@ curl -fsSL https://raw.githubusercontent.com/wuchuheng/dotfiles/master/install.s
  - add the prompt for the AI gdp to use the standard git commit message to generate the standar commit message
  - copy the changes to the clipboard
 
-## aliases
+ ## Tools
+ 
+ - `n` - A desktop notification that can be used to send desktop notifications from the command line.
+
+## Assets
 
 ### 1. fonts
 [NerdFont Regular](src/assets/fonts/0xProto/)
