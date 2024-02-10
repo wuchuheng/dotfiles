@@ -5,12 +5,14 @@
 # @Usage: some_cmd_stout_message | n
 ##
 function n() {
-    local message="(empty message)"
+    # local message="(empty message)"
+    local message=""
 
     # Get the message from the standard input
-    if [ -p /dev/stdin ]; then
-        message=$(cat)
-    fi
+    while IFS= read -r line; do
+        echo -e "${line}"
+        message="${input}${line}\n"
+    done
 
     local log_file="${G_DOTFILES_ROOT}/src/cache/plugin/notification/nohup.log"
     # If the directory does not exist, create it
@@ -19,6 +21,9 @@ function n() {
 
     local desktop_notification_script="${G_DOTFILES_ROOT}/src/plugins/notification/desktop-notification.zsh"
 
+    if [[ -z "${message}" ]]; then
+        message="(empty message)"
+    fi
     printf "%s" "${message}"
     $(nohup  ${desktop_notification_script} --message "${message}" > $log_file 2>&1 &)
 }
