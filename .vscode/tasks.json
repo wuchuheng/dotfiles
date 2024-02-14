@@ -1,0 +1,17 @@
+{
+  "tasks": [
+    {
+      "label": "Format Lua with Prettier",
+      "type": "shell",
+      "command": "pnpm run prettier ${relativeFile} --write",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}

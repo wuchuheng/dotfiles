@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "prettier": "prettier"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "@prettier/plugin-lua": "^0.0.3"
+  }
+}

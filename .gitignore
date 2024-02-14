@@ -4,3 +4,9 @@ src/cache/
 !src/XDG_CONFIG_HOME/tmux
 src/XDG_CONFIG_HOME/
 letsencrypt/
+
+**/node_modules/
+
+# web-vim
+src/plugins/web-vim/cache/
+src/plugins/web-vim/data/nvim/lazy/lazy.nvim
