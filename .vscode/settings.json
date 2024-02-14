@@ -1,9 +1,4 @@
 {
-  // "triggerTaskOnSave.tasks": {
-  //   "Format Lua with Prettier": [
-  //     "*.lua" // <-- Glob pattern to specify which files should trigger the task
-  //   ]
-  // },
   "[lua]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "JohnnyMorganz.stylua"
