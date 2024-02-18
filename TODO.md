@@ -17,6 +17,16 @@ This document outlines planned features, known bugs, and tasks to be completed f
     - [ ] the desktop notice will be noticed frome the browser.
   - [ ] Implement the `n` cmd to notice the `cmd` result via http protocol to send the message to local web server opened in the browser, and then the browser will send the message to the user.
 
+  - [ ] Implement the `dot ls` cmd to list of the description of the plugin, and the user can get the plugin description from the `dot ls` cmd. like:
+    ```bash
+    dot ls # <-- the cmd will list the description of the plugin.
+    
+    # the result will be like:
+    1. certificate:
+      certificate.create_by_dns: Create a new certificate by DNS.
+    2. web-vim: Open a new neovim to develop a web project.
+    3. ...
+    ```
 ## Bugs
 
 
