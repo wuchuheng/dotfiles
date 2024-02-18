@@ -7,6 +7,7 @@ import ./providers/lib.zsh --as libs
 import ./providers/custom_plugin.zsh --as custom_plugin
 import ./providers/workflow.zsh --as workflow
 import ./providers/doc_help.zsh --as doc_help
+import ./providers/welcome.zsh --as welcome
 
 export G_DOTFILES_ROOT=${ZPM_WORKSPACE}
 
@@ -15,6 +16,7 @@ function init() {
 }
 
 function main() {
+    call welcome.load
     call conf.load
     call libs.load
     call plugins.load

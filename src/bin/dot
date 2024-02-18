@@ -1,9 +1,15 @@
 #!/usr/bin/env zpm
 
-import github.com/zpm-shell/zpm/src/utils/color.zsh --as color
-
 function init() {
     call list_cmd_docs
+}
+
+function green_bold_print() {
+    echo -e "\033[1;32m$1\033[0m"
+}
+
+function bold_print() {
+    echo -e "\033[1m$1\033[0m"
 }
 
 function list_cmd_docs() {
@@ -21,16 +27,13 @@ function list_cmd_docs() {
             if [[ -z $hasData ]]; then
                 continue
             fi
-            call color.reset
-            call color.shape_bold
-            call color.print "Plguin: ${plugin}:"
+            call bold_print "Plguin: ${plugin}:"
             grep -E "^# @Docs:" $pluginFile | while read line; do
                 local cmdDocs=$( echo $line | sed -e 's/^# @Docs: //' )
                 if [[ -n $cmdDocs ]]; then
                     local cmdName=${cmdDocs%%:*}
                     local cmdDesc=${cmdDocs#*:}
-                    call color.light_green
-                    echo "  $(call color.print ${cmdName}):${cmdDesc}"
+                    echo "  $(call green_bold_print ${cmdName}):${cmdDesc}"
                 fi
             done
         fi
