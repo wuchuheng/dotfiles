@@ -9,6 +9,7 @@
 
 ##
 # Create a new certificate by DNS.
+# @Docs: certificate.create_by_dns: Create a new certificate by DNS.
 ##
 function certificate.create_by_dns() {
     local certificateDir="$(pwd)/letsencrypt"

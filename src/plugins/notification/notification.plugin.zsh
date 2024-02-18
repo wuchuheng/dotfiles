@@ -3,6 +3,7 @@
 ##
 # Notyfy the user with a message and a title on the desktop.
 # @Usage: some_cmd_stout_message | n
+# @Docs: n: Notyfy the user with a message and a title on the desktop. usage: some_cmd_stout_message | n
 ##
 function n() {
     # local message="(empty message)"

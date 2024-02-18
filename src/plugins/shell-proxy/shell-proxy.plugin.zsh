@@ -2,15 +2,24 @@
 
 import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
 
+##
+# @Docs: proxy.set: Set the proxy in the shell. usage: proxy
+##
 function proxy.set() {
     eval "${SHELL_PROXY_CMD}"
     call log.info "Set the proxy in the shell." --no-path
 }
 
+##
+# @Docs: proxy: Set the proxy in the shell. usage: proxy
+##
 function proxy() {
     proxy.set
 }
 
+##
+# @Docs: proxy.unset: Unset the proxy in the shell. usage: proxy.unset
+##
 function proxy.unset() {
     unset http_proxy
     unset https_proxy

@@ -4,6 +4,7 @@ import github.com/zpm-shell/zpm/src/utils/color.zsh --as color
 
 ##
 # Print the tmux default keybindings
+# @Docs: tmux_doc: Print the tmux default keybindings. usage: tmux_doc
 ##
 function tmux_doc() {
     # Reset colors and apply formatting for section headers

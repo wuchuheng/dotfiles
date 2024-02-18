@@ -17,6 +17,9 @@ function dns.a() {
     open $url
 }
 
+##
+# @Docs: dns: Query the A record of the domain. usage: dns example.com
+##
 function dns() {
     dns.a
 }

@@ -1,0 +1,39 @@
+#!/usr/bin/env zpm
+
+import github.com/zpm-shell/zpm/src/utils/color.zsh --as color
+
+function init() {
+    call list_cmd_docs
+}
+
+function list_cmd_docs() {
+     local pluginPath="${G_DOTFILES_ROOT}/src/plugins"
+    # 1 Loop all the entry of the plugin under the path ${G_DOTFILES_ROOT}/src/plugins, for example: the plugin name is certificate, then the path is ${G_DOTFILES_ROOT}/src/plugins/certificate/certificate.plugin.zsh
+
+    for plugin in $(ls ${pluginPath}); do
+        local pluginFile="${pluginPath}/${plugin}/${plugin}.plugin.zsh"
+        if [[ -f $pluginFile ]]; then
+            # 2 Print the cmd docs in the plugin file, the flowing was a snippet of the code in the plugin file:
+            # @Docs: certificate.create_by_dns: This function will create a new certificate by DNS.
+            # and then print the docs to the console like this: certificate.create_by_dns: This function will create a new certificate by DNS.
+            # local cmdDocs=$( 
+            local hasData=$( grep -E "^# @Docs:" $pluginFile )
+            if [[ -z $hasData ]]; then
+                continue
+            fi
+            call color.reset
+            call color.shape_bold
+            call color.print "Plguin: ${plugin}:"
+            grep -E "^# @Docs:" $pluginFile | while read line; do
+                local cmdDocs=$( echo $line | sed -e 's/^# @Docs: //' )
+                if [[ -n $cmdDocs ]]; then
+                    local cmdName=${cmdDocs%%:*}
+                    local cmdDesc=${cmdDocs#*:}
+                    call color.light_green
+                    echo "  $(call color.print ${cmdName}):${cmdDesc}"
+                fi
+            done
+        fi
+    done
+   
+}

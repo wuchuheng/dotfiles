@@ -11,6 +11,7 @@ function ip.public() {
     echo "Your network is IPv4 or IPv6 access prioritized in cn: $(curl -s test.ipw.cn)"
 }
 
+# @Docs: ip: Get the public IP address.
 function ip() {
     ip.public
 }

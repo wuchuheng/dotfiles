@@ -2,7 +2,10 @@
 
 import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
 
+##
 # This is the entry point for 
+# @Docs: web-vim: Open the nvim to develope a web program.
+##
 function web-vim() {
     local currentDir=${G_DOTFILES_ROOT}/src/plugins/web-vim
     local XDG_DATA_HOME=${currentDir}/data;
