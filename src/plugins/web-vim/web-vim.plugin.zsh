@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
+
 # This is the entry point for 
 function web-vim() {
     local currentDir=${G_DOTFILES_ROOT}/src/plugins/web-vim
@@ -18,6 +20,10 @@ function web-vim() {
     if [[ ! -d ${astroNvimInstalledPath} ]]; then
         mkdir -p ${astroNvimInstalledPath}
         git clone --depth 1 https://github.com/AstroNvim/AstroNvim ${astroNvimInstalledPath}
+        if [[ $? -ne 0 ]]; then
+            call log.error "Failed to install AstroNvim"
+            return 1
+        fi
     fi
 
     XDG_CACHE_HOME=${XDG_CACHE_HOME} \

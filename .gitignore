@@ -10,6 +10,9 @@ letsencrypt/
 # web-vim
 src/plugins/web-vim/cache/
 src/plugins/web-vim/data/nvim/lazy/lazy.nvim
+src/plugins/web-vim/state/
+!src/plugins/web-vim/data/nvim/lazy-lock.json
+src/plugins/web-vim/data/
 
 # beta-vim
 src/plugins/beta-vim/cache/
