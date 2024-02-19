@@ -22,7 +22,7 @@ function web-vim() {
     local astroNvimInstalledPath=${XDG_CONFIG_HOME}/nvim
     if [[ ! -d ${astroNvimInstalledPath} ]]; then
         mkdir -p ${astroNvimInstalledPath}
-        git clone --depth 1 https://github.com/AstroNvim/AstroNvim ${astroNvimInstalledPath}
+        git clone --depth 1 https://github.com/wuchuheng/web-vim ${astroNvimInstalledPath}
         if [[ $? -ne 0 ]]; then
             call log.error "Failed to install AstroNvim"
             return 1
