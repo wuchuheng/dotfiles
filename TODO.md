@@ -27,7 +27,7 @@ This document outlines planned features, known bugs, and tasks to be completed f
     2. web-vim: Open a new neovim to develop a web project.
     3. ...
     ```
-  - [ ] Implement the documents of workflow to describe what the workflow do and how to use it. like execute the `dot workflows` cmd to get the workflow description.
+  - [x] Implement the documents of workflow to describe what the workflow do and how to use it. like execute the `dot workflows` cmd to get the workflow description.
     ```bash
     dot workflows # <-- the cmd will list the description of the workflow.
     

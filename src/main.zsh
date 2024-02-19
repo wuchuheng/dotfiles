@@ -16,6 +16,7 @@ function init() {
 }
 
 function main() {
+    call doc_help.load
     call welcome.load
     call conf.load
     call libs.load
@@ -23,5 +24,4 @@ function main() {
     call custom_plugin.load
     call workflow.load
     call theme.load
-    call doc_help.load
 }

@@ -7,11 +7,10 @@ function load() {
     local workflowPath="${G_DOTFILES_ROOT}/src/workflows"
     if [[ -n "$(ls -A ${workflowPath})" ]]; then
         for workflow in ${workflowPath}/*; do
-            local workflowPath=${workflow:A}
-            if [[ -f ${workflowPath} ]]; then
-                . ${workflowPath}
-            elif [[ -d ${workflowPath} ]]; then
-                continue
+            local name=${workflow:t}
+            local entry="${workflow}/${name}.workflow.zsh"
+            if [[ -f ${entry} ]]; then
+                . ${entry}
             else
                 call log.error "workflow ${name} not found in path ${workflowPath}."
             fi

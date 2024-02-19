@@ -13,4 +13,5 @@ function load() {
 
 To see all available commands, run: \`dot\`
 EOF
+    dot
 }

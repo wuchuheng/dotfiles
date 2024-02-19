@@ -23,6 +23,7 @@ EOF
 # - show the changes
 # - add the prompt for the AI gdp to use the standard git commit message to generate the standar commit message
 # - copy the changes to the clipboard
+# @Docs: git_gdp_workflow: This workflow is used to generate the standard git commit message by using the AI gdp.
 function git_gdp_workflow() {
     local diff=$( git add -A && git diff --staged )
     # | pbcopy
@@ -43,6 +44,7 @@ EOF
 # - show the changes
 # - add the prompt for the AI gdp to use the standard git commit message to generate the standar commit message
 # - copy the changes to the clipboard
+# @Docs: git_stage_gdp_workflow: This workflow is used to generate the standard git commit message by using the AI gdp. but only stage the changes.
 ##
 function git_stage_gdp_workflow() {
     local diff=$(git diff --staged )

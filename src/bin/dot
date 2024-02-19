@@ -1,7 +1,47 @@
-#!/usr/bin/env zpm
+#!/usr/bin/env zsh
 
-function init() {
-    call list_cmd_docs
+TRUE=0
+FALSE=1
+
+function main() {
+    local inputArgs=("$@")
+    if [[ $# -eq 0 ]]; then
+        list_docs --path "src/plugins" --desc "Cmd in Plugins" --ext "plugin"
+        list_docs --path "src/workflows" --desc "Workflows" --ext "workflow"
+        return 0
+    fi
+    local command=$1
+    case $command in
+        help)
+            help
+            ;;
+        p|plugins)
+            list_docs --path "src/plugins" --desc "Cmd in Plugins" --ext "plugin"
+            ;;
+        workflows|w)
+            list_docs --path "src/workflows" --desc "Workflows" --ext "workflow"
+            ;;
+        *)
+            help
+            ;;
+    esac
+    
+}
+
+
+##
+# Print the help message for the command `dot`
+#
+function help() {
+    cat <<EOF
+Usage: dot <command> [options]
+Commands:
+  plugins , p: Print all the commands in the plugins.
+  workflows , w: Print all the workflows.
+Options:
+  --help, -h: Print the help message.
+EOF
+
 }
 
 function green_bold_print() {
@@ -12,31 +52,64 @@ function bold_print() {
     echo -e "\033[1m$1\033[0m"
 }
 
-function list_cmd_docs() {
-     local pluginPath="${G_DOTFILES_ROOT}/src/plugins"
-    # 1 Loop all the entry of the plugin under the path ${G_DOTFILES_ROOT}/src/plugins, for example: the plugin name is certificate, then the path is ${G_DOTFILES_ROOT}/src/plugins/certificate/certificate.plugin.zsh
-
-    for plugin in $(ls ${pluginPath}); do
-        local pluginFile="${pluginPath}/${plugin}/${plugin}.plugin.zsh"
-        if [[ -f $pluginFile ]]; then
-            # 2 Print the cmd docs in the plugin file, the flowing was a snippet of the code in the plugin file:
-            # @Docs: certificate.create_by_dns: This function will create a new certificate by DNS.
-            # and then print the docs to the console like this: certificate.create_by_dns: This function will create a new certificate by DNS.
-            # local cmdDocs=$( 
-            local hasData=$( grep -E "^# @Docs:" $pluginFile )
+##
+# @Usage: list_docs --path [directory path] --desc [description of the list] --ext [file extension]
+# @Example: list_docs --path /path/to/plugins --desc "List all the cmd in plugins" --ext plugin
+##
+function list_docs() {
+    typeset -A args=(
+        [path]=''
+        [desc]=''
+        [ext]=''
+    )
+    # 1 Parse the input arguments
+    for (( i=1; i<=$#; i++ )); do
+        local arg=${@[$i]}
+        case $arg in
+            --path)
+                args[path]=${@[$((i+1))]}
+                ;;
+            --desc)
+                args[desc]=${@[$((i+1))]}
+                ;;
+            --ext)
+                args[ext]=${@[$((i+1))]}
+                ;;
+        esac
+    done
+    # 2 Check if the required arguments was provided or not.
+    for key in "${(k)args[@]}"; do
+        if [[ -z ${args[$key]} ]]; then
+            echo "The argument $key is required."
+            return 1
+        fi
+    done
+    
+    # 3 
+    local _path="${G_DOTFILES_ROOT}/${args[path]}"
+    local isPrintedTitle=$FALSE
+    for name in $(ls ${_path}); do
+        local entry="${_path}/${name}/${name}.${args[ext]}.zsh"
+        if [[ -f $entry ]]; then
+            local hasData=$( grep -E "^# @Docs:" $entry)
             if [[ -z $hasData ]]; then
                 continue
             fi
-            call bold_print "Plguin: ${plugin}:"
-            grep -E "^# @Docs:" $pluginFile | while read line; do
+            grep -E "^# @Docs:" $entry| while read line; do
                 local cmdDocs=$( echo $line | sed -e 's/^# @Docs: //' )
                 if [[ -n $cmdDocs ]]; then
+                    if [[ $isPrintedTitle -eq $FALSE ]]; then
+                        bold_print "${args[desc]}:"
+                        isPrintedTitle=$TRUE
+                    fi
+
                     local cmdName=${cmdDocs%%:*}
                     local cmdDesc=${cmdDocs#*:}
-                    echo "  $(call green_bold_print ${cmdName}):${cmdDesc}"
+                    echo "  $( green_bold_print ${cmdName}):${cmdDesc}"
                 fi
             done
         fi
     done
-   
 }
+
+main $@
