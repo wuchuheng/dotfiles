@@ -1,0 +1,27 @@
+{
+  "[lua]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "JohnnyMorganz.stylua"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  // Configure for search and file exclude.
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.git": true,
+    "**/.idea": true,
+    "**/dist": true
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/coverage": true,
+    "**/.idea": true
+  }
+}

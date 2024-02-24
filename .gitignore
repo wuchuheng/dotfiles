@@ -1,3 +1,4 @@
+.DS_Store
 src/tmp/
 dotfiles.zsh
 src/cache/
@@ -14,6 +15,16 @@ src/plugins/web-vim/state/
 !src/plugins/web-vim/data/nvim/lazy-lock.json
 src/plugins/web-vim/data/
 
+# rust-vim
+src/plugins/rust-vim/cache/
+src/plugins/rust-vim/data/
+src/plugins/rust-vim/state/
+src/plugins/rust-vim/config/
+
+
+
 # beta-vim
 src/plugins/beta-vim/cache/
-src/plugins/beta-vim/data/nvim/lazy/lazy.nvim
+src/plugins/beta-vim/data/
+src/plugins/beta-vim/state/
+src/plugins/beta-vim/config/
