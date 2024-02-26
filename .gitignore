@@ -28,3 +28,5 @@ src/plugins/beta-vim/cache/
 src/plugins/beta-vim/data/
 src/plugins/beta-vim/state/
 src/plugins/beta-vim/config/
+
+src/plugins/**/config/github-copilot/
