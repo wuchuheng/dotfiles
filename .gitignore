@@ -6,6 +6,9 @@ src/cache/
 src/XDG_CONFIG_HOME/
 letsencrypt/
 
+!src/XDG_CACHE_HOME/.gitkeep
+src/XDG_CACHE_HOME/
+
 **/node_modules/
 
 # web-vim
