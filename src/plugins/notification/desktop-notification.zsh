@@ -1,26 +1,38 @@
 #!/usr/bin/env zsh
 
+# 1. Handleing input.
+# 1.1 Get the input from the standard input.
 local messageInput=""
+local title=""
 local args=($@)
 local i=1
 while [[ $i -le ${#args[@]} ]]; do
     local arg=${args[$i]}
     case $arg in
-        --message)
-            local messageInput=${args[$((i+1))]}
+        --body)
+            ((i++))
+            messageInput=${args[$i]}
+            ;;
+        --title)
+            ((i++))
+            title=${args[$i]}
             ;;
     esac
-    i=$((i+1))
+    ((i++))
 done
+echo "args: ${args[@]}"
 
+# 1.2 If the title is empty, set the default title.
+[[ -z $title ]] && title="Command Line Notification"
+
+# 2. Processing logic.
+# 2.1 Get the last command from the history file.that will be displayed in the notification.
 local history_file="$HOME/.zsh_history"
-# Get the last command
-local cmd=$(tail -n 1 $history_file | cut -d ';' -f 2-)
+local lastCmd=$(tail -n 1 $history_file | cut -d ';' -f 2-)
 
-# Replace the character `"` with `\"` to avoid the error `unterminated string literal`
-cmd=$(echo $cmd | sed 's/"/\\"/g')
+# 2.1.1 Replace the character `"` with `\"` to avoid the error `unterminated string literal`
+lastCmd=$(echo $lastCmd | sed 's/"/\\"/g')
 messageInput=$(echo $messageInput | sed 's/"/\\"/g')
-local title="Command Line Notification"
 
-# Display the notification on the desktop.
-osascript -e "display notification \"${messageInput}\" with title \"${title}\" subtitle \"${cmd}\" sound name \"Submarine\""
+# 3. Display the notification on the desktop.
+osascript -e "display notification \"${messageInput}\" with title \"${title}\" subtitle \"${lastCmd}\" sound name \"Submarine\""
