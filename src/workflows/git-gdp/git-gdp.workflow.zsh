@@ -8,10 +8,10 @@ import ./git-gdp.workflow.zsh --as self
 
 function prompt() {
     cat <<EOF
-please, show the me the standar git commit message for the above changes?
-and the git commit message must be used the prefix like:
+Please, show me the standard git commit message for the above changes?
+and the git commit message must use the prefix like:
     feat: ... or test: ... or docs: ... etc.
-and try to add a option that can be used to add the scope of the changes,like:
+and try to add an option that can be used to add the scope of the changes, like:
     feat(plugin): Add a new plugin ... or docs(conf): add a documents for some config ...
     feat(workflows): ...
 EOF
