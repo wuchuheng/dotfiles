@@ -20,3 +20,5 @@ alias gr='git remote'
 alias grs='git remote show'
 alias glo='git log --pretty="oneline"'
 alias glol='git log --graph --oneline --decorate'
+
+git config --global core.editor "vim -c 'set number' -c 'syntax on' "
