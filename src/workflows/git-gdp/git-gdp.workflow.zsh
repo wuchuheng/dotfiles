@@ -60,3 +60,41 @@ EOF
    call activate_chrome_action.activate_chrome_action
    call switch_chrome_tab1_action.switch_chrome_tab1_action
 }
+
+##
+# @Description: This workflow is used to generate the standard git commit message by using the AI gdp.
+# This is a workflow to do the flowing steps:
+# - show the changes
+# - add the prompt for the AI gdp to use the standard git commit message to generate the standar commit message
+# - copy the changes to the clipboard
+# @Docs: git_vscode_workflow: This workflow is used to generate the standard git commit message by using the AI gdp. but only stage the changes.
+##
+function git_vscode_workflow() {
+    # 1. Handling input.
+    # 2. Processing logic.
+    # 2.1 Add all git file.
+    git add -A
+    # 2.2 Get the git status.
+    local gitStatus=$(git status)
+
+    
+    # 2.3 Add the prompt to clipboard.
+    local content=$( cat  <<EOF
+@workspace
+    $gitStatus
+
+
+$(call self.prompt)
+like: 
+
+feat(config): Enhance Jest and TypeScript configuration 
+  - Update Jest configuration to include testEnvironment and s etupFilesAfterEnv options. 
+  - Add jest.setup.js for Jest setup and mocking.
+  - ...
+EOF
+)
+   print $content | pbcopy
+   
+   # 3. Return result.
+   echo "Please put the prompt from the clipboard to the copilot in the vscode."
+}
