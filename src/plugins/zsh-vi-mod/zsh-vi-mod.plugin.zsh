@@ -44,6 +44,26 @@ cursor_mode() {
 
 cursor_mode
 
+# There is declared the edit-command-line for the keybind "v".
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
+edit-command-line() {
+    # Save the command line content to a temporary file
+    local tempfile=$(mktemp)
+    print -r -- "$LBUFFER$RBUFFER" > $tempfile
+    
+    # Open the command line in Vim with the 'set number' option
+    vim -c "set number" + $tempfile
+    
+    # After editing, read the content back
+    if [[ -f $tempfile ]]; then
+        LBUFFER=$(< $tempfile)
+        CURSOR=${#LBUFFER}
+        rm -f $tempfile
+    fi
+    zle reset-prompt
+}
 
 # Adding Text Objects on zsh interactive mode when using vi mode.
 autoload -Uz select-bracketed select-quoted
