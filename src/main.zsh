@@ -1,5 +1,6 @@
 #!/usr/bin/env zpm
 
+import ./providers/env.zsh --as env
 import ./providers/theme.zsh --as theme
 import ./providers/config.zsh --as conf
 import ./providers/plugin.zsh --as plugins
@@ -16,6 +17,7 @@ function init() {
 }
 
 function main() {
+    call env.load
     call doc_help.load
     call welcome.load
     call conf.load
