@@ -71,3 +71,15 @@ function n() {
     $(nohup  ${desktop_notification_script} --body "${body}" --title "${title}" > $log_file 2>&1 &)
 }
 
+##
+# Notyfy the user with a sound prompt in the terminal.
+# @Usage: cmd | dang
+# @Docs: dang: Notyfy the user with a sound prompt in the terminal. usage: cmd | dang
+##
+function dang() {
+    # 1. Print the sound prompt 10 times.
+    for i in {1..20}; do
+        printf "\a"
+        sleep 0.1
+    done
+}
