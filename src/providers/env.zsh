@@ -6,7 +6,7 @@ function load() {
     # 1. Handle the input.
     # 2. Processing logic.
     
-    local envFile="${G_DOTFILES_ROOT}/env"
+    local envFile="${G_DOTFILES_ROOT}/.env"
     
     # 2.1 Load the env file.
     # 2.1.1 Check if the file exists.
