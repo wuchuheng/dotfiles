@@ -146,6 +146,7 @@ check_git_exists || print_error "git is not installed"
 # 2. Processing the logic.
 # 2.1 Install zpm if it is not installed.
 if ! check_zpm_exists; then
+    # 2.1.1 Install zpm.
     print_info "zpm is not installed, installing zpm..."
     curl -fsSL -o install.sh ${ZPM_INSTALL_URL} && source install.sh
     if [ $? -ne 0 ]; then
@@ -153,7 +154,11 @@ if ! check_zpm_exists; then
     else
         print_success "install zpm successfully"
     fi
+
+    # 2.1.2 Print the ZPM_DIR.
+    print_info "ZPM_DIR=${ZPM_DIR}"
 fi
+
 
 # 2.2 Throw an error if the zpm dotfiles is already installed.
 check_zpm_dotfiles && print_error "zpm dotfiles is already installed"
