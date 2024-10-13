@@ -4,7 +4,7 @@ TRUE=0
 FALSE=1
 dotfiles_repo="https://github.com/wuchuheng/dotfiles.git"
 dotfiles_dir="${HOME}/.dotfiles"
-ZPM_INSTALL_URL="https://raw.githubusercontent.com/zpm-shell/zpm/0.1.6/install.sh"
+ZPM_INSTALL_URL="https://raw.githubusercontent.com/zpm-shell/zpm/0.1.7/install.sh"
 
 ##
 # Check if zsh is installed
