@@ -135,9 +135,16 @@ function remove_zshrc_conf() {
     sed -i '' "/${ZSHRC_START_SYMBOL}/,/${ZSHRC_END_SYMBOL}/d" ~/.zshrc
 }
 
+# 1. Check the environment.
+# 1.1 check if zsh is installed
 check_zsh_exists || print_error "zsh is not installed"
+# 1.2 check if curl is installed
 check_curl_exists || print_error "curl is not installed"
+# 1.3 check if git is installed
 check_git_exists || print_error "git is not installed"
+
+# 2. Processing the logic.
+# 2.1 Install zpm if it is not installed.
 if ! check_zpm_exists; then
     print_info "zpm is not installed, installing zpm..."
     curl -fsSL -o install.sh ${ZPM_INSTALL_URL} && source install.sh
@@ -148,25 +155,31 @@ if ! check_zpm_exists; then
     fi
 fi
 
+# 2.2 Throw an error if the zpm dotfiles is already installed.
 check_zpm_dotfiles && print_error "zpm dotfiles is already installed"
 
+# 2.3 Install the zpm dotfiles.
 install_zpm_dotfiles
  
+# 2.4 Remove the config for the zpm dotfiles in the zshrc if it exists.
 check_zshrc && remove_zshrc_conf
 
+# 2.5 Add the config for the zpm dotfiles in the zshrc.
 add_zshrc
 
+# 2.6 Clean up the installation package.
 [ -f install.sh ] && rm -f install.sh
 
-# link the ~/.dotfiles/src/.zshenv to ~/.zshenv
-## 1. remove the ~/.zshenv to ~/.dotfiles/src/cache/backup/.zshenv if it exists
+# 2.7 Link the ~/.dotfiles/src/.zshenv to ~/.zshenv
+# 2.7.1 remove the ~/.zshenv to ~/.dotfiles/src/cache/backup/.zshenv if it exists
 if [ -f ~/.zshenv ]; then
     backupDir="${dotfiles_dir}/src/cache/backup"
     [ ! -d "${backupDir}" ] && mkdir -p "${backupDir}"
     mv ~/.zshenv ${backupDir}/.zshenv 
 fi
-## 2. link the ~/.dotfiles/src/.zshenv to ~/.zshenv
+
+# 2.8 link the ~/.dotfiles/src/.zshenv to ~/.zshenv
 ln -s ${dotfiles_dir}/src/.zshenv ~/.zshenv
 
-# install zpm dotfiles successfully, please restart your terminal.
-printf "\e[32;1mSUCCESS\e[0m%s\n" " zpm dotfiles installed successfully, please restart your terminal."
+# 3. Print the success message.
+print_success "zpm dotfiles installed successfully, please restart your terminal."
