@@ -124,7 +124,11 @@ check_zsh_exists || print_error "zsh is not installed"
 check_curl_exists || print_error "curl is not installed"
 check_git_exists || print_error "git is not installed"
 if ! check_zpm_exists; then
-  curl -fsSL -o install.sh ${ZPM_INSTALL_URL} && source install.sh
+    echo "zpm is not installed, installing zpm..."
+    curl -fsSL -o install.sh ${ZPM_INSTALL_URL} && source install.sh
+    if [ $? -ne 0 ]; then
+        print_error "install zpm failed"
+    fi
 fi
 
 check_zpm_dotfiles && print_error "zpm dotfiles is already installed"
