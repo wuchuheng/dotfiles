@@ -43,7 +43,7 @@ jobs:
       - name: Install dotfiles
         run: |
           docker exec ${CONTAINER_NAME} bash -c "
-          curl -fsSL https://raw.githubusercontent.com/zpm-shell/zpm-dotfiles-template/master/install.sh | bash
+          curl -fsSL https://raw.githubusercontent.com/wuchuheng/dotfiles/master/install.sh | bash
           "
       - name: Check dotfiles
         run: |
