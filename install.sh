@@ -58,7 +58,7 @@ function check_curl_exists() {
 # print error message
 ##
 function print_error() {
-    printf "%s\n" "\033[31mERROR\033[0m$1"
+    echo -e "\033[1;31mERROR: \033[0m$1"
     exit ${FALSE}
 }
 
@@ -66,14 +66,15 @@ function print_error() {
 # print success message
 ##
 function print_success() {
-    printf "%s\n" "\033[32mSUCCESS\033[0m$1"
+    echo -e "\033[1;32mSUCCESS: \033[0m$1"
 }
+print_success hello
 
 ##
 # print info message
 ##
 function print_info() {
-    printf "%s\n" "\033[34mINFO\033[0m$1"
+    echo -e "\033[1;34mINFO: \033[0m$1"
 }
 
 ZSHRC_START_SYMBOL="# zpm load zpm-dotfiles"
