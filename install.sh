@@ -62,6 +62,20 @@ function print_error() {
     exit ${FALSE}
 }
 
+##
+# print success message
+##
+function print_success() {
+    printf "%s\n" "\033[32mSUCCESS\033[0m$1"
+}
+
+##
+# print info message
+##
+function print_info() {
+    printf "%s\n" "\033[34mINFO\033[0m$1"
+}
+
 ZSHRC_START_SYMBOL="# zpm load zpm-dotfiles"
 ZSHRC_END_SYMBOL="# zpm end load zpm-dotfiles"
 
@@ -124,10 +138,12 @@ check_zsh_exists || print_error "zsh is not installed"
 check_curl_exists || print_error "curl is not installed"
 check_git_exists || print_error "git is not installed"
 if ! check_zpm_exists; then
-    echo "zpm is not installed, installing zpm..."
+    print_info "zpm is not installed, installing zpm..."
     curl -fsSL -o install.sh ${ZPM_INSTALL_URL} && source install.sh
     if [ $? -ne 0 ]; then
         print_error "install zpm failed"
+    else
+        print_success "install zpm successfully"
     fi
 fi
 
