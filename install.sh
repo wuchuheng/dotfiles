@@ -155,8 +155,6 @@ if ! check_zpm_exists; then
         print_success "install zpm successfully"
     fi
 
-    # 2.1.2 Print the ZPM_DIR.
-    print_info "ZPM_DIR=${ZPM_DIR}"
 fi
 
 
