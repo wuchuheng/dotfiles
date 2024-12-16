@@ -8,6 +8,6 @@ import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
 ##
 function clip() {
     local input=$(cat)
-    echo $input | pbcopy
+    printf "%s" "$input" | pbcopy
     call log.info "The input was copied to the clipboard."
 }
