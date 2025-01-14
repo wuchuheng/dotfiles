@@ -26,3 +26,8 @@ function lanchTmux() {
 if [[ ${TMUX_ENABLE} == ${TRUE} ]]; then
   lanchTmux
 fi
+
+# 切换 tmux 模式
+function t() {
+  lanchTmux
+}
