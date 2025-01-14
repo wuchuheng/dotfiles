@@ -24,6 +24,7 @@ function tmux_doc() {
 
     # Print the reformatted documentation
     cat <<EOF
+Prefix key: <Ctrl+b>
 
 ${SplitWindow}
 Split your current window into panes.
