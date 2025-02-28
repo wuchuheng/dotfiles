@@ -12,6 +12,6 @@ function ip.public() {
 }
 
 # @Docs: ip: Get the public IP address.
-function ip() {
+function ipInfo() {
     ip.public
 }
