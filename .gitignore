@@ -33,3 +33,9 @@ src/plugins/beta-vim/state/
 src/plugins/beta-vim/config/
 
 src/plugins/**/config/github-copilot/
+
+# lazy-vim
+src/plugins/lvim/cache/
+src/plugins/lvim/data/
+src/plugins/lvim/state/
+src/plugins/lvim/config/
