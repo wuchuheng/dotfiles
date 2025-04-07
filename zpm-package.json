@@ -30,8 +30,7 @@
       "entry": "bd.plugin.zsh"
     },
     "github.com/zdharma-continuum/fast-syntax-highlighting",
-    "github.com/zsh-users/zsh-syntax-highlighting",
-    "github.com/marlonrichert/zsh-autocomplete"
+    "github.com/zsh-users/zsh-syntax-highlighting"
   ],
   "dependencies": {
     "github.com/zpm-shell/zpm": "0.1.5",
@@ -40,7 +39,6 @@
     "github.com/ohmyzsh/ohmyzsh": "80c114cb3a64044ea50b623f96a35bc022db5e8d",
     "github.com/zsh-users/zsh-completions": "25691f59b56c290eacf36157a72d6eda8058d196",
     "github.com/Tarrasch/zsh-bd": "d4a55e661b4c9ef6ae4568c6abeff48bdf1b1af7",
-    "github.com/zdharma-continuum/fast-syntax-highlighting": "cf318e06a9b7c9f2219d78f41b46fa6e06011fd9",
-    "github.com/marlonrichert/zsh-autocomplete": "a09c1c5c1c967a1a9541820370a9bab4edc0ab29"
+    "github.com/zdharma-continuum/fast-syntax-highlighting": "cf318e06a9b7c9f2219d78f41b46fa6e06011fd9"
   }
 }

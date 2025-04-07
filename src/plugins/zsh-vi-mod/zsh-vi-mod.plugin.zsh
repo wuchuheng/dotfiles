@@ -53,11 +53,17 @@ edit-command-line() {
     local tempfile=$(mktemp)
     print -r -- "$LBUFFER$RBUFFER" > $tempfile
     
-    # Open the command line in Vim with the 'set number' option
-    vim -c "set number" + $tempfile
+    # Store the current buffer to properly replace it later
+    local original_buffer="$LBUFFER$RBUFFER"
+    
+    # Open the command line in a terminal-friendly way, redirect stdin from /dev/tty
+    # to avoid the "Input is not from a terminal" warning
+    < /dev/tty vim -c "set number" + $tempfile
     
     # After editing, read the content back
     if [[ -f $tempfile ]]; then
+        # Clear the current buffer before loading the new content
+        BUFFER=""
         LBUFFER=$(< $tempfile)
         CURSOR=${#LBUFFER}
         rm -f $tempfile
