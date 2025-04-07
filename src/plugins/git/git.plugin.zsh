@@ -22,3 +22,6 @@ alias glo='git log --pretty="oneline"'
 alias glol='git log --graph --oneline --decorate'
 
 git config --global core.editor "vim -c 'set number' -c 'syntax on' "
+
+# Make the git show the chinese characters
+git config --global core.quotepath false

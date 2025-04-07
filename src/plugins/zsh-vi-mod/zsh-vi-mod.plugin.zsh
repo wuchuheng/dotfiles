@@ -83,3 +83,28 @@ done
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
+
+# 1. Input Processing
+# 1.1 Configure key bindings for zsh-autocomplete plugin
+# 1.1.1 Ensure up/down arrow keys navigate completion menu items instead of history
+
+# Down arrow selects next item in completion menu
+bindkey '^[[B' down-line-or-select
+# Or use this more specific binding
+# bindkey '^[[B' menu-complete
+
+# Up arrow selects previous item in completion menu
+bindkey '^[[A' up-line-or-select
+# Or use this more specific binding
+# bindkey '^[[A' reverse-menu-complete
+
+# 2. Logic Handling
+# 2.1 Ensure completion menu displays correctly
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-rows-first true
+
+# 3. Output
+# 3.1 Configure autocomplete plugin behavior
+# For marlonrichert/zsh-autocomplete plugin
+zstyle ':autocomplete:*' min-input 1  # Show completions after typing at least one character
+zstyle ':autocomplete:*' widget-style menu-select  # Use menu selection style

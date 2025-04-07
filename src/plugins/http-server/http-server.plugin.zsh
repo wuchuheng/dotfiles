@@ -9,7 +9,8 @@ function http.start() {
     docker run -it --rm --name http-server \
         -p '80:80' \
         -p '443:443' \
-        -v "${currentDir}/www/:/www" \
+        -v "$(pwd):/www/default" \
+        -v "${currentDir}/www/local.wuchuheng.com:/www/local.wuchuheng.com" \
         -v ${currentDir}/nginx/:/etc/nginx/ \
         --name http-server \
         nginx:latest
