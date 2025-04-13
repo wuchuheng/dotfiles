@@ -17,8 +17,8 @@ function proxy.set() {
     git config --global https.proxy ${PROXY_URL};
 "
 
-    echo "Git proxy:"
-    echo "${gitProxyCmd}"
+#    echo "Git proxy:"
+#    echo "${gitProxyCmd}"
 
     call log.info "Set the proxy in the shell." --no-path
 }
@@ -55,9 +55,9 @@ function proxy.unset() {
     git config --global --unset http.proxy;
     git config --global --unset https.proxy;
 '
-    eval "${unsetGitProxyCmd}"
-    echo "Unset git proxy:"
-    echo "${unsetGitProxyCmd}"
+#    eval "${unsetGitProxyCmd}"
+#    echo "Unset git proxy:"
+#    echo "${unsetGitProxyCmd}"
 
     # Unset the proxy in the shell.
     call log.success "Unset the proxy in the shell."
