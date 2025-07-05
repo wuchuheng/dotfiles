@@ -5,6 +5,7 @@
 import ./actions/activate-chrome.action.zsh --as activate_chrome_action
 import ./actions/switch-chrome-tab1.action.zsh --as switch_chrome_tab1_action
 import ./git-gdp.workflow.zsh --as self
+import ../../lib/helper.zsh --as helper
 
 function prompt() {
     cat <<EOF
@@ -33,7 +34,7 @@ function git_gdp_workflow() {
 $(call self.prompt)
 EOF
 )
-   print $content | pbcopy 
+   call helper.clipboard $content
    call activate_chrome_action.activate_chrome_action
    call switch_chrome_tab1_action.switch_chrome_tab1_action
 }
@@ -56,7 +57,8 @@ function git_stage_gdp_workflow() {
 $(call self.prompt)
 EOF
 )
-   print $content | pbcopy
+   call helper.clipboard $content
+
    call activate_chrome_action.activate_chrome_action
    call switch_chrome_tab1_action.switch_chrome_tab1_action
 }
@@ -93,24 +95,10 @@ feat(config): Enhance Jest and TypeScript configuration
   - ...
 EOF
 )
-   call self.clipboard $content
+   call helper.clipboard $content
    
    # 3. Return result.
    echo "Please put the prompt from the clipboard to the copilot in the vscode."
 }
 
 
-function clipboard() {
-    # 2. Handling logic.
-    # 2.1 Access the output of the command.
-    local content=$1
-
-    # 2.2 Copy the content to the clipboard.
-    # If OS is Linux, use xclip to copy the content to the clipboard.
-    if [[ $(uname) == "Linux" ]]; then
-        echo $content | xclip -selection clipboard
-    # If OS is Mac, use pbcopy to copy the content to the clipboard.
-    else
-        echo $content | pbcopy
-    fi
-}

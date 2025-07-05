@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
+import ../../lib/helper.zsh --as helper
 
 ##
 # Access the pipe line and put the input to the clipboard.
@@ -8,6 +9,7 @@ import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
 ##
 function clip() {
     local input=$(cat)
-    printf "%s" "$input" | pbcopy
+    call helper.clipboard $input
+    
     call log.info "The input was copied to the clipboard."
 }
