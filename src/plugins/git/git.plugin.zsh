@@ -25,3 +25,32 @@ git config --global core.editor "vim -c 'set number' -c 'syntax on' "
 
 # Make the git show the chinese characters
 git config --global core.quotepath false
+
+
+import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
+
+
+
+##
+# Check github connection via SSH.
+# @Docs: git.check: Check github connection via SSH.
+##
+function git.check() {
+    call log.info "Check github connection via SSH"
+    ssh -T git@github.com
+}
+
+##
+# @Docs: git.sshProxyConfigDemo: Print SSH proxy configuration for git proxy via ssh.
+##
+function git.sshProxyConfigDemo() {
+    call log.info "Print SSH proxy configuration for git proxy via ssh"
+    echo "
+Host github.com
+HostName github.com
+User git
+Port 22
+ProxyCommand connect -H 192.168.0.102:7897 %h %p
+"
+}
+

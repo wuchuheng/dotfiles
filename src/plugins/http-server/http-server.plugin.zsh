@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
 ##
-# Lanch a http server.
-# @Docs: http.start: Lanch a http server with nginx.
+# Launch a http server.
+# @Docs: http.start: Launch a http server with nginx.
 ##
 function http.start() {
     local currentDir="${G_DOTFILES_ROOT}/src/plugins/http-server"
