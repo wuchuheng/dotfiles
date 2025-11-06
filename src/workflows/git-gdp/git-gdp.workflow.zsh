@@ -34,7 +34,10 @@ function git_gdp_workflow() {
 $(call self.prompt)
 EOF
 )
-   call helper.clipboard $content
+   if ! call helper.clipboard "$content"; then
+       echo "Failed to copy the content to the clipboard. Ensure a clipboard utility is available."
+       return 1
+   fi
    call activate_chrome_action.activate_chrome_action
    call switch_chrome_tab1_action.switch_chrome_tab1_action
 }
@@ -57,7 +60,10 @@ function git_stage_gdp_workflow() {
 $(call self.prompt)
 EOF
 )
-   call helper.clipboard $content
+   if ! call helper.clipboard "$content"; then
+       echo "Failed to copy the content to the clipboard. Ensure a clipboard utility is available."
+       return 1
+   fi
 
    call activate_chrome_action.activate_chrome_action
    call switch_chrome_tab1_action.switch_chrome_tab1_action
@@ -95,10 +101,11 @@ feat(config): Enhance Jest and TypeScript configuration
   - ...
 EOF
 )
-   call helper.clipboard $content
+   if ! call helper.clipboard "$content"; then
+       echo "Failed to copy the content to the clipboard. Ensure a clipboard utility is available."
+       return 1
+   fi
    
    # 3. Return result.
    echo "Please put the prompt from the clipboard to the copilot in the vscode."
 }
-
-
