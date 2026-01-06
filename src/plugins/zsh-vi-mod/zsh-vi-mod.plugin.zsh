@@ -2,6 +2,17 @@
 
 export KEYTIMEOUT=1
 bindkey -v
+
+# Fix for pasting issue where the last character case is toggled (e.g., hello -> hellO)
+# This happens because the bracketed paste end sequence ^[[201~ ends with ~, which toggles case in vi mode.
+# We need to ensure bracketed-paste is properly bound.
+# Note: We use the native 'bracketed-paste' widget instead of 'bracketed-paste-magic' to avoid performance issues (slow pasting).
+if [[ ${ZSH_VERSION} > 5.1 ]]; then
+    # bracketed-paste is a builtin widget in recent zsh, no need to autoload or zle -N it usually,
+    # but we ensure it's bound to the escape sequence.
+    bindkey -M viins '^[[200~' bracketed-paste
+    bindkey -M vicmd '^[[200~' bracketed-paste
+fi
 # Bind Ctrl+e to the end-of-line widget
 bindkey -v '^E' end-of-line
 # Bind Ctrl+w to forward one word.
