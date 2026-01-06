@@ -184,5 +184,40 @@ fi
 # 2.8 link the ~/.dotfiles/src/.zshenv to ~/.zshenv
 ln -s ${dotfiles_dir}/src/.zshenv ~/.zshenv
 
+# 2.9 Handle ~/.claude
+# If ~/.claude exists locally and is not a symlink, move it to the repo
+claude_local="${HOME}/.claude"
+claude_repo="${dotfiles_dir}/src/config/claude"
+
+if [ -d "${claude_local}" ] && [ ! -L "${claude_local}" ]; then
+    print_info "Migrating ${claude_local} to ${claude_repo}..."
+    mkdir -p "$(dirname "${claude_repo}")"
+    mv "${claude_local}" "${claude_repo}"
+fi
+
+# Link ~/.claude to the repo if it exists in the repo
+if [ -d "${claude_repo}" ]; then
+    if [ -L "${claude_local}" ]; then
+        # Check if it points to the correct location, if not, update it
+        current_target=$(readlink "${claude_local}")
+        if [ "${current_target}" != "${claude_repo}" ]; then
+            print_info "Updating ~/.claude symlink..."
+            rm "${claude_local}"
+            ln -s "${claude_repo}" "${claude_local}"
+        fi
+    elif [ -e "${claude_local}" ]; then
+        # If it exists and is not a symlink (and wasn't moved above), backup and link
+        print_info "Backing up existing ${claude_local}..."
+        backupDir="${dotfiles_dir}/src/cache/backup"
+        [ ! -d "${backupDir}" ] && mkdir -p "${backupDir}"
+        mv "${claude_local}" "${backupDir}/claude_backup_$(date +%s)"
+        ln -s "${claude_repo}" "${claude_local}"
+    else
+        # If it doesn't exist, create the link
+        print_info "Linking ${claude_repo} to ${claude_local}..."
+        ln -s "${claude_repo}" "${claude_local}"
+    fi
+fi
+
 # 3. Print the success message.
 print_success "zpm dotfiles installed successfully, please restart your terminal."

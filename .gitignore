@@ -39,3 +39,21 @@ src/plugins/lvim/cache/
 src/plugins/lvim/data/
 src/plugins/lvim/state/
 src/plugins/lvim/config/
+
+# claude
+src/config/claude/debug/
+src/config/claude/todos/
+src/config/claude/history.jsonl
+src/config/claude/session-env/
+src/config/claude/shell-snapshots/
+src/config/claude/file-history/
+src/config/claude/stats-cache.json
+src/config/claude/statsig/
+src/config/claude/downloads/
+src/config/claude/projects/
+src/config/claude/plans/
+
+
+src/config/claude/gmlSettings.json
+
+src/config/claude/plugins/known_marketplaces.json
