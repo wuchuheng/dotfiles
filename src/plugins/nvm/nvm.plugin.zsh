@@ -3,7 +3,14 @@ function load_nvm_config() {
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 }
 
-load_nvm_config
+# load_nvm_config
+
+# Lazy load nvm
+function nvm node npm pnpm yarn {
+    unfunction nvm node npm pnpm yarn
+    load_nvm_config
+    "$0" "$@"
+}
 
 ##
 # Install the nvm command.
@@ -15,7 +22,7 @@ function nvm.install() {
         # 2. If the nvm command was not found, then try to install it.
         ## 2.1 If the command curl not found, then break the installation.
         if ! command -v curl &> /dev/null; then
-            echo "The curl command was not found. Please install it first."
+            log.error "The curl command was not found. Please install it first."
             return 1
         fi
         
@@ -30,7 +37,7 @@ function nvm.install() {
     if command -v nvm &> /dev/null; then
         load_nvm_config
     else
-        echo "The nvm command was not found. Please install it first."
+        log.error "The nvm command was not found. Please install it first."
         return 1
     fi
 }

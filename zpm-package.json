@@ -22,15 +22,13 @@
         "name": ["z"]
       }
     },
-    "github.com/zsh-users/zsh-syntax-highlighting",
     "github.com/zsh-users/zsh-autosuggestions",
     "github.com/zsh-users/zsh-completions",
     {
       "name": "github.com/Tarrasch/zsh-bd",
       "entry": "bd.plugin.zsh"
     },
-    "github.com/zdharma-continuum/fast-syntax-highlighting",
-    "github.com/zsh-users/zsh-syntax-highlighting"
+    "github.com/zdharma-continuum/fast-syntax-highlighting"
   ],
   "dependencies": {
     "github.com/zpm-shell/zpm": "0.1.5",

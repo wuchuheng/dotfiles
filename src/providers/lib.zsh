@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-function load() {
+function lib.load() {
     local lib=''
     local libPath="${G_DOTFILES_ROOT}/src/lib"
     if [[ -n "$(ls -A ${libPath})" ]]; then

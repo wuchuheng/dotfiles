@@ -1,3 +1,3 @@
 function plugin-demo() {
-    echo "hello"
+    log.info "hello"
 }

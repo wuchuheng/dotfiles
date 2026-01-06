@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-import github.com/zpm-shell/zpm/src/utils/color.zsh --as color
+# import github.com/zpm-shell/zpm/src/utils/color.zsh --as color
 
 ##
 # Print the tmux default keybindings
@@ -8,19 +8,19 @@ import github.com/zpm-shell/zpm/src/utils/color.zsh --as color
 ##
 function tmux_doc() {
     # Reset colors and apply formatting for section headers
-    call color.reset
-    call color.light_green
-    call color.shape_bold
+    # call color.reset
+    # call color.light_green
+    # call color.shape_bold
 
     # Define section headers with color and formatting
-    local ResizePanes="$(call color.print 'Resize Panes:')"
-    local SelectWindow="$(call color.print 'Select Window:')"
-    local SplitWindow="$(call color.print 'Split Window:')"
-    local Navigation="$(call color.print 'Navigation:')"
-    local SessionManagement="$(call color.print 'Session Management:')"
-    local WindowPaneManagement="$(call color.print 'Window & Pane Management:')"
-    local CopyPaste="$(call color.print 'Copy & Paste:')"
-    local Miscellaneous="$(call color.print 'Miscellaneous:')"
+    local ResizePanes="Resize Panes:"
+    local SelectWindow="Select Window:"
+    local SplitWindow="Split Window:"
+    local Navigation="Navigation:"
+    local SessionManagement="Session Management:"
+    local WindowPaneManagement="Window & Pane Management:"
+    local CopyPaste="Copy & Paste:"
+    local Miscellaneous="Miscellaneous:"
 
     # Print the reformatted documentation
     cat <<EOF

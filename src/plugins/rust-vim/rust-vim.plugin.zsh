@@ -22,7 +22,7 @@ function rust-vim() {
         mkdir -p ${astroNvimInstalledPath}
         git clone --depth 1 https://github.com/AstroNvim/AstroNvim ${astroNvimInstalledPath}
         if [[ $? -ne 0 ]]; then
-            call log.error "Failed to install AstroNvim"
+            log.error "Failed to install AstroNvim"
             return 1
         fi
     fi
@@ -33,7 +33,7 @@ function rust-vim() {
     if [[ ! -d ${userConfigPath} ]]; then
         git clone --depth 1 https://github.com/wuchuheng/rust-vim ${userConfigPath}
         if [[ $? -ne 0 ]]; then
-            call log.error "Failed to install AstroNvim"
+            log.error "Failed to install AstroNvim"
             return 1
         fi
     fi

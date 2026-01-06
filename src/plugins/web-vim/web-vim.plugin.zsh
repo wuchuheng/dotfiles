@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
+# import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
 
 ##
 # This is the entry point for 
@@ -25,7 +25,7 @@ function wvim() {
     local secondVersion=$(echo ${nvimVersion} | awk -F'.' '{print $2}')
     local thirdVersion=$(echo ${nvimVersion} | awk -F'.' '{print $3}')
     if [[ ${mainVersion} -lt 0 ]] || [[ ${mainVersion} -eq 0 && ${secondVersion} -lt 5 ]]; then
-        call log.error "The current Neovim version is ${nvimVersion}, it must be greater than 0.5.0"
+        log.error "The current Neovim version is ${nvimVersion}, it must be greater than 0.5.0"
         return 1
     fi
     
@@ -39,7 +39,7 @@ function wvim() {
         git clone --depth 1 https://github.com/wuchuheng/web-vim ${astroNvimInstalledPath}
         # 3.1.1 If the clone was failed, then return 1.
         if [[ $? -ne 0 ]]; then
-            call log.error "Failed to install AstroNvim"
+            log.error "Failed to install AstroNvim"
             return 1
         fi
 

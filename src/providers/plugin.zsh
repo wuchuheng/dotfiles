@@ -1,9 +1,17 @@
 #!/usr/bin/env zsh
 
-import github.com/zpm-shell/zpm/src/utils/bin.zsh --as bin
+# import ${ZPM_DIR}/src/utils/bin.zsh --as bin
 
-function load() {
-    local jq=$( call bin.jq )
+function plugins.load() {
+    local jq="${ZPM_DIR}/src/qjs-tools/bin/jq"
+    local cacheFile="${G_DOTFILES_ROOT}/src/cache/plugin_load_cache.zsh"
+    local packageJson="${G_DOTFILES_ROOT}/zpm-package.json"
+    local cacheContent=""
+
+    if [[ -f "${cacheFile}" && "${cacheFile}" -nt "${packageJson}" ]]; then
+        source "${cacheFile}"
+        return
+    fi
 
     # 1 get the plugin names from zpm-package.json with the field `plugins`.
     local plugins=()
@@ -32,6 +40,10 @@ function load() {
             local entryFile=${ZPM_DIR}/packages/${plugin}/${version}/${plugin##*/}.plugin.zsh
             if [[ -f ${entryFile} ]]; then
                 source ${entryFile}
+                cacheContent="${cacheContent}source ${entryFile}\n"
+                if [[ ! -f ${entryFile}.zwc || ${entryFile} -nt ${entryFile}.zwc ]]; then
+                    zcompile ${entryFile}
+                fi
             else
                 throw \
                 --error-message "the entry file ${entryFile} was not found for the plugin ${plugin}." \
@@ -82,6 +94,8 @@ function load() {
             if [[ ! -f ${entry} ]]; then
                 throw --error-message "the entry file ${entry} was not found for the plugin ${pluginName}." --exit-code 1
             fi
+            source ${entry}
+            cacheContent="${cacheContent}source ${entry}\n"
             # 4 check the plugin subPlugin was set or not.
             local hasSubPlugin=$( $jq -q subPlugin -j "${plugin}" -t has )
             local subPluginPath=''
@@ -126,12 +140,21 @@ function load() {
         fi
         # 5　load the plugin
         # 5.1 load the plugin
-        source ${entry}
+        # source ${entry}
         # 5.2 load the subPlugin
         for subPluginFile in ${subPluginFiles[@]}; do
             source ${subPluginFile}
+            cacheContent="${cacheContent}source ${subPluginFile}\n"
         done
 
         (( i++ ))
     done
+    
+    # Save cache
+    local cacheDir="${cacheFile:h}"
+    if [[ ! -d "${cacheDir}" ]]; then
+        mkdir -p "${cacheDir}"
+    fi
+    echo "${cacheContent}" > "${cacheFile}"
+    zcompile "${cacheFile}"
 }

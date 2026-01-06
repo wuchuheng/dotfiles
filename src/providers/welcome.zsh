@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-function load() {
+function welcome.load() {
     cat <<EOF
  __          __         _           _                      _           _       _    __ _ _          
  \ \        / /        | |         | |                    ( )         | |     | |  / _(_| |         

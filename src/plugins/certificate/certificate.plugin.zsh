@@ -21,6 +21,6 @@ function certificate.create_by_dns() {
         -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
         certbot/certbot certonly  --manual --preferred-challenges dns
     if [ $? -eq 0 ]; then
-        echo "The certificate has been created successfully and saved in ${certificateDir}"
+        log.success "The certificate has been created successfully and saved in ${certificateDir}"
     fi
 }

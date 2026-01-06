@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+export ANTHROPIC_AUTH_TOKEN="577b8ab453cd428bbee8e8814f69ce93.sJ7wSeZfGuRzkbdI"
+export ANTHROPIC_BASE_URL="https://open.bigmodel.cn/api/anthropic"
+export API_TIMEOUT_MS=3000000
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="glm-4.7"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="glm-4.7"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="glm-4.7"
+
+CLAUDE_BIN="claude"
+
+exec "$CLAUDE_BIN" "$@"

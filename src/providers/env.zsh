@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # Load the env file.
-function load() {
+function env.load() {
     
     # 1. Handle the input.
     # 2. Processing logic.

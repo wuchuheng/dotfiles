@@ -1,13 +1,37 @@
 #!/usr/bin/env zsh
 
+source "${G_DOTFILES_ROOT}/src/lib/log.zsh"
+
 TRUE=0
 FALSE=1
 
 function main() {
     local inputArgs=("$@")
     if [[ $# -eq 0 ]]; then
-        list_docs --path "src/plugins" --desc "List of cmd from Plugins" --ext "plugin" --exclude '${name}'
-        list_docs --path "src/workflows" --desc "Workflows" --ext "workflow"
+        local cache_file="${G_DOTFILES_ROOT}/src/cache/dot_output.txt"
+        local cache_dir="${cache_file%/*}"
+        [[ ! -d "$cache_dir" ]] && mkdir -p "$cache_dir"
+        
+        local needs_update=0
+        if [[ ! -f "$cache_file" ]]; then
+            needs_update=1
+        else
+            # Check if any file is newer than cache
+            local newer=$(find "${G_DOTFILES_ROOT}/src/plugins" "${G_DOTFILES_ROOT}/src/workflows" -type f -name "*.zsh" -newer "$cache_file" -print -quit)
+            if [[ -n "$newer" ]]; then
+                needs_update=1
+            fi
+        fi
+
+        if [[ $needs_update -eq 1 ]]; then
+            {
+                list_docs --path "src/plugins" --desc "List of cmd from Plugins" --ext "plugin" --exclude '${name}'
+                list_docs --path "src/workflows" --desc "Workflows" --ext "workflow"
+            } > "$cache_file"
+        fi
+        
+        cat "$cache_file"
+        # help
         return 0
     fi
     local command=$1

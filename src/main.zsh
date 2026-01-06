@@ -1,29 +1,43 @@
 #!/usr/bin/env zpm
+# zmodload zsh/zprof
 
-import ./providers/env.zsh --as env
-import ./providers/theme.zsh --as theme
-import ./providers/config.zsh --as conf
-import ./providers/plugin.zsh --as plugins
-import ./providers/lib.zsh --as libs
-import ./providers/custom_plugin.zsh --as custom_plugin
-import ./providers/workflow.zsh --as workflow
-import ./providers/doc_help.zsh --as doc_help
-import ./providers/welcome.zsh --as welcome
+# Ensure G_DOTFILES_ROOT is set if not already present, defaulting to the parent directory of this script
+if [[ -z "${G_DOTFILES_ROOT}" ]]; then
+    export G_DOTFILES_ROOT="${0:a:h:h}"
+fi
 
-export G_DOTFILES_ROOT=${ZPM_WORKSPACE}
-
-function init() {
-    call main # <-- Auto load main function after init.
-}
+source ${G_DOTFILES_ROOT}/src/providers/env.zsh
+source ${G_DOTFILES_ROOT}/src/providers/theme.zsh
+source ${G_DOTFILES_ROOT}/src/providers/config.zsh
+source ${G_DOTFILES_ROOT}/src/providers/plugin.zsh
+source ${G_DOTFILES_ROOT}/src/providers/lib.zsh
+source ${G_DOTFILES_ROOT}/src/providers/custom_plugin.zsh
+source ${G_DOTFILES_ROOT}/src/providers/workflow.zsh
+source ${G_DOTFILES_ROOT}/src/providers/doc_help.zsh
+source ${G_DOTFILES_ROOT}/src/providers/welcome.zsh
 
 function main() {
-    call env.load
-    call doc_help.load
-    call welcome.load
-    call conf.load
-    call libs.load
-    call plugins.load
-    call custom_plugin.load
-    call workflow.load
-    call theme.load
+    env.load
+    doc_help.load
+    welcome.load
+    config.load
+    lib.load
+    plugins.load
+    custom_plugin.load
+    workflow.load
+    theme.load
+    
+    if ! type compdef > /dev/null; then
+        autoload -Uz compinit
+        # Check if .zcompdump exists and is less than 20 hours old
+        if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+20) ]]; then
+            compinit
+        else
+            compinit -C
+        fi
+    fi
+
+    # zprof > /home/wuchuheng/.dotfiles/zprof.log
 }
+
+main # <-- Auto load main function.

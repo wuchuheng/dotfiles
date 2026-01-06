@@ -32,4 +32,4 @@ setopt MENU_COMPLETE
 setopt AUTO_LIST            # Automatically list choices on ambiguous completion.
 
 
-autoload -Uz compinit && compinit 
+# autoload -Uz compinit && compinit 

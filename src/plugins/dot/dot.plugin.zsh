@@ -1,4 +1,4 @@
-import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
+# import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
 
 ##
 # Create a new plugin.
@@ -6,22 +6,21 @@ import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
 ##
 function dot.create.plugin() {
     # 1. Recieve the plugin name by asking the user's input.
-    echo -n "Enter the plugin name: "
-    read -r name
+    read "name?Enter the plugin name: "
 
     # 1.1 Trim the name.
     name=$(echo ${name} | xargs)
 
     # 1.1 Check the name must be in a letter.
     if [[ ! ${name} =~ ^[a-zA-Z0-9]+$ ]]; then
-        call log.error "Invalid plugin name. The plugin name must be in a letter."
+        log.error "Invalid plugin name. The plugin name must be in a letter."
         return 1
     fi
 
     # 2. Check if the plugin already exists.
     local currentDir=${G_DOTFILES_ROOT}/src/plugins/${name}
     if [ -d ${currentDir} ]; then
-            call log.error "Plugin already exists."
+        log.error "Plugin already exists."
         return 1
     fi
 
@@ -44,5 +43,5 @@ EOF
     cat ${plugin_file}
 
     local relativeFile=${plugin_file#${G_DOTFILES_ROOT}/}
-    call log.success "Plugin: ${name} created successfully in ${relativeFile}."
+    log.success "Plugin: ${name} created successfully in ${relativeFile}."
 }

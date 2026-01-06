@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Wrapper for Claude Code CLI using Doubao API
+
+# Inject API credentials
+export ANTHROPIC_BASE_URL="https://ark.cn-beijing.volces.com/api/compatible"
+export ANTHROPIC_AUTH_TOKEN="8bcad64e-c504-47a5-8a1a-9f38994b7a1b"
+# export API_TIMEOUT_MS=3000000
+# export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
+
+# export ANTHROPIC_DEFAULT_HAIKU_MODEL="doubao-seed-code-preview-latest"
+# export ANTHROPIC_DEFAULT_SONNET_MODEL="doubao-seed-code-preview-latest"
+# export ANTHROPIC_DEFAULT_OPUS_MODEL="doubao-seed-code-preview-latest"
+
+export ANTHROPIC_MODEL="doubao-seed-code-preview-latest"
+
+CLAUDE_BIN="claude"
+
+exec "$CLAUDE_BIN" "$@"

@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
+# import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
 import ../../lib/helper.zsh --as helper
 
 ##
@@ -10,9 +10,9 @@ import ../../lib/helper.zsh --as helper
 function clip() {
     local input="$(cat)"
     if call helper.clipboard "$input"; then
-        call log.info "The input was copied to the clipboard."
+        log.success "The input was copied to the clipboard."
     else
-        call log.error "Failed to copy the input to the clipboard."
+        log.error "Failed to copy the input to the clipboard."
         return 1
     fi
 }

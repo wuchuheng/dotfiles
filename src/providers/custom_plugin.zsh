@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
-import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
+# import ${ZPM_DIR}/src/utils/log.zsh --as log
 
-function load() {
+function custom_plugin.load() {
     local plugin=''
     local savedPluginPath="${G_DOTFILES_ROOT}/src/plugins"
     if [[ -n "$(ls -A ${savedPluginPath})" ]]; then
@@ -12,7 +12,7 @@ function load() {
             if [[ -f ${pluginPath} ]]; then
                 . ${pluginPath}
             else
-                call log.error "Plugin ${name} not found."
+                echo -e "\033[1;31mERROR:\033[0m Plugin ${name} not found."
             fi
         done
     fi

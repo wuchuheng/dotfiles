@@ -27,7 +27,7 @@ git config --global core.editor "vim -c 'set number' -c 'syntax on' "
 git config --global core.quotepath false
 
 
-import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
+# import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
 
 
 
@@ -36,7 +36,7 @@ import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
 # @Docs: git.check: Check github connection via SSH.
 ##
 function git.check() {
-    call log.info "Check github connection via SSH"
+    log.info "Check github connection via SSH"
     ssh -T git@github.com
 }
 
@@ -44,7 +44,7 @@ function git.check() {
 # @Docs: git.sshProxyConfigDemo: Print SSH proxy configuration for git proxy via ssh.
 ##
 function git.sshProxyConfigDemo() {
-    call log.info "Print SSH proxy configuration for git proxy via ssh"
+    log.info "Print SSH proxy configuration for git proxy via ssh"
     echo "
 Host github.com
 HostName github.com

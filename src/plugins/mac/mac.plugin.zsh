@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-import github.com/zpm-shell/zpm/src/utils/color.zsh --as color
+# import github.com/zpm-shell/zpm/src/utils/color.zsh --as color
 
 ##
 # Disable the press and hold feature of the keyboard.
@@ -10,7 +10,7 @@ function mac() {
 
     # If the OS is not macOS, then return.
     if [[ $(uname) != "Darwin" ]]; then
-        echo "This script is only supported on macOS."
+        log.error "This script is only supported on macOS."
         return 1
     fi
 
@@ -19,4 +19,6 @@ function mac() {
 }
 
 # Automatically run the mac function when the script is sourced.
-mac
+if [[ $(uname) == "Darwin" ]]; then
+    mac
+fi

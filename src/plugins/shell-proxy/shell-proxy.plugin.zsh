@@ -1,13 +1,13 @@
 #!/usr/bin/env zsh
 
-import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
+# import github.com/zpm-shell/zpm/src/utils/log.zsh --as log
 
 ##
 # @Docs: proxy.set: Set the proxy in the shell. usage: proxy
 ##
 function proxy.set() {
     # 2.1 Proxy for env.
-    echo "Env proxy: "
+    log.info "Env proxy: "
     echo "${SHELL_PROXY_CMD}"
     eval "${SHELL_PROXY_CMD}"
 
@@ -20,7 +20,7 @@ function proxy.set() {
 #    echo "Git proxy:"
 #    echo "${gitProxyCmd}"
 
-    call log.info "Set the proxy in the shell." --no-path
+    log.success "Set the proxy in the shell."
 }
 
 ##
@@ -46,7 +46,7 @@ function proxy.unset() {
     unset FTP_PROXY;
     unset NO_PROXY;
 "
-    echo "Unset env proxy:"
+    log.info "Unset env proxy:"
     echo ${unsetEnvProxyCmd}
     eval "${unsetEnvProxyCmd}"
 
@@ -60,7 +60,7 @@ function proxy.unset() {
 #    echo "${unsetGitProxyCmd}"
 
     # Unset the proxy in the shell.
-    call log.success "Unset the proxy in the shell."
+    log.success "Unset the proxy in the shell."
 }
 
 if [[ ${SHELL_PROXY_ENABLED} == ${TRUE}  ]]; then
